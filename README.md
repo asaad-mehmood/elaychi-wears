@@ -2,8 +2,8 @@
 
 A demo shop for a made-up Pakistani clothing brand, **Elaychi Wears**, built to show Instagram
 sellers what Asaad can make for them: all products with prices in one link,
-a category filter, a page per product, and an **Order on WhatsApp** button that
-writes the order message (product, code, size, price, link) for the customer.
+a category filter, a page per product, a bag (cart), and WhatsApp ordering:
+the whole bag (or a single piece) is sent as one ready-written message.
 
 - Next.js 16 static export + Tailwind CSS v4 (same stack as abdul-haadi-shoaib)
 - Products live in `src/data/catalogue.ts`, shaped like a Sanity query result

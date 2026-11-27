@@ -18,11 +18,12 @@
 - `src/lib/catalogue.ts` — the only data access layer (`getProducts`, `getCategories`, `getSettings`, `getProduct`) + GROQ queries for later.
 - `src/lib/whatsapp.ts` — order message text and `wa.me` link builder. `format.ts` (rupees in lakh grouping, sold-out, sale %), `img.ts` (resized image URLs / srcset).
 - `src/app/page.tsx` — hero, catalogue, "How to order". `src/app/product/[slug]/page.tsx` — product page (static params). `src/app/credits/page.tsx` — photo credits.
-- `src/components/Catalogue.tsx` — client filter (category in URL hash via `useSyncExternalStore`) + sort. `OrderPanel.tsx` — size picker + WhatsApp button (sticky on phones). `Gallery.tsx`, `ProductCard.tsx`, `Header.tsx`, `Footer.tsx`, `DemoBar.tsx`.
+- `src/components/Catalogue.tsx` — client filter + sort. The selected category lives in the URL hash and is shared through `src/lib/category.ts` (`setCategory`, `revealShop`); `CategoryButton.tsx` is a link that filters + scrolls (e.g. hero "Winter pieces"). Every filter/sort change scrolls the grid back into view, so it's visible on phones.
+- Bag (cart): `src/lib/cart.ts` (localStorage store `elaychi-wears-bag`, `useCart`, `addToCart`, `setQty`, open state), `BagButton.tsx` (header icon + count), `BagDrawer.tsx` (slide-in panel in the layout: qty, remove, optional name/city/address, total, one WhatsApp message via `bagMessage` in `whatsapp.ts`). `OrderPanel.tsx` — size picker + "Add to bag" + "Order now" (WhatsApp, this piece only); sticky on phones. Made-to-order bridal skips the bag ("Book a fitting"). `Gallery.tsx`, `ProductCard.tsx`, `Header.tsx`, `Footer.tsx`, `DemoBar.tsx`.
 - `studio-schema/` — Sanity schemas (product, category, shopSettings, structure). Excluded from tsconfig/eslint.
 
 ## Quirks
 
 - `node_modules` is a symlink to `../abdul-haadi-shoaib/node_modules` (disk is tight). `next.config.ts` sets `turbopack.root` to the parent folder because of that. `package-lock.json` is Haadi's lockfile with the name changed, so Cloudflare installs identical versions.
 - Plain `<img>` with srcset everywhere (static export, no image optimizer); the `no-img-element` lint rule is disabled per file.
-- Category filter state is the URL hash (`/#winter`), so links to a category work.
+- Category filter state is the URL hash (`/#winter`), so links to a category work. Next `<Link>` hash clicks don't fire `hashchange`, so use `CategoryButton`/`setCategory` for in-page category links.

@@ -3,7 +3,8 @@ import { Fraunces, Instrument_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { DemoBar } from "@/components/DemoBar";
-import { getSettings } from "@/lib/catalogue";
+import { BagDrawer } from "@/components/BagDrawer";
+import { getProducts, getSettings } from "@/lib/catalogue";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -32,7 +33,11 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const s = await getSettings();
+  const [s, products] = await Promise.all([getSettings(), getProducts()]);
+  // Only what the bag needs, to keep the page small.
+  const mini = products.map(({ slug, title, subtitle, code, price, salePrice, images, sizesInStock }) => ({
+    slug, title, subtitle, code, price, salePrice, images: images.slice(0, 1), sizesInStock,
+  }));
   return (
     <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
       <body className="grain min-h-dvh">
@@ -40,6 +45,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <Header name={s.name} />
         <main>{children}</main>
         <Footer settings={s} />
+        <BagDrawer products={mini} settings={s} />
       </body>
     </html>
   );

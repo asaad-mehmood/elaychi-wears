@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import type { Product, Size } from "@/data/types";
+import { addToCart, setBagOpen } from "@/lib/cart";
 import { isSoldOut, rupees } from "@/lib/format";
 import { orderMessage, waLink } from "@/lib/whatsapp";
-import { WhatsAppIcon } from "./Icons";
+import { BagIcon, WhatsAppIcon } from "./Icons";
 
 const ALL_SIZES: Size[] = ["XS", "S", "M", "L", "XL"];
 
@@ -14,55 +15,72 @@ export function OrderPanel({ product: p, whatsapp }: { product: Product; whatsap
   const soldOut = isSoldOut(p);
   const mto = p.sizeMode === "made-to-order";
   const price = p.salePrice ?? p.price;
-  const ready = mto || (!!size && !soldOut);
 
-  function message() {
-    return orderMessage({
-      title: p.title,
-      subtitle: p.subtitle,
-      code: p.code,
-      price,
-      size: mto ? undefined : size ?? undefined,
-      url: typeof window !== "undefined" ? window.location.href : undefined,
-    });
+  // Ask for a size first; returns false (and points at the sizes) if none is chosen.
+  function needSize(): boolean {
+    if (mto || size) return false;
+    setNudge(true);
+    document.getElementById("sizes")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    return true;
   }
 
-  function onOrder(e: React.MouseEvent<HTMLAnchorElement>) {
-    if (!ready) {
+  function onAdd() {
+    if (needSize() || !size) return;
+    addToCart(p.slug.current, size);
+    setBagOpen(true);
+  }
+
+  function onOrderNow(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (needSize()) {
       e.preventDefault();
-      setNudge(true);
-      document.getElementById("sizes")?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     // Build the link at click time so it includes the page URL.
-    e.currentTarget.href = waLink(whatsapp, message());
+    e.currentTarget.href = waLink(
+      whatsapp,
+      orderMessage({ title: p.title, subtitle: p.subtitle, code: p.code, price, size: mto ? undefined : size ?? undefined, url: window.location.href }),
+    );
   }
 
   const restockText = `Assalam o Alaikum! Please tell me when ${p.title} (${p.code}) is back in stock.`;
+  const fallbackHref = waLink(whatsapp, orderMessage({ title: p.title, subtitle: p.subtitle, code: p.code, price }));
 
-  const button = soldOut ? (
-    <a
-      href={waLink(whatsapp, restockText)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex w-full items-center justify-center gap-2 border border-ink px-5 py-3.5 text-[15px] hover:bg-ink hover:text-paper"
-    >
-      <WhatsAppIcon /> Tell me when it&apos;s back
-    </a>
-  ) : (
-    <a
-      href={waLink(whatsapp, orderMessage({ title: p.title, subtitle: p.subtitle, code: p.code, price }))}
-      onClick={onOrder}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`flex w-full items-center justify-center gap-2 px-5 py-3.5 text-[15px] text-white transition-colors ${
-        ready ? "bg-elaychi hover:bg-elaychi-2" : "bg-elaychi/70"
-      }`}
-    >
-      <WhatsAppIcon />
-      {mto ? "Book a fitting on WhatsApp" : size ? `Order size ${size} on WhatsApp` : "Order on WhatsApp"}
-    </a>
-  );
+  let buttons: React.ReactNode;
+  if (soldOut) {
+    buttons = (
+      <a href={waLink(whatsapp, restockText)} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 border border-elaychi px-5 py-3.5 text-[15px] text-elaychi-2 hover:bg-elaychi hover:text-paper">
+        <WhatsAppIcon /> Tell me when it&apos;s back
+      </a>
+    );
+  } else if (mto) {
+    buttons = (
+      <a href={fallbackHref} onClick={onOrderNow} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 bg-elaychi px-5 py-3.5 text-[15px] text-paper hover:bg-elaychi-2">
+        <WhatsAppIcon /> Book a fitting on WhatsApp
+      </a>
+    );
+  } else {
+    buttons = (
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={onAdd}
+          className={`flex flex-1 items-center justify-center gap-2 px-4 py-3.5 text-[15px] text-paper transition-colors ${size ? "bg-elaychi hover:bg-elaychi-2" : "bg-elaychi/75"}`}
+        >
+          <BagIcon className="h-[18px] w-[18px]" /> {size ? `Add size ${size} to bag` : "Add to bag"}
+        </button>
+        <a
+          href={fallbackHref}
+          onClick={onOrderNow}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex shrink-0 items-center justify-center gap-2 border border-elaychi/50 px-4 py-3.5 text-[14px] text-elaychi-2 hover:border-elaychi"
+          aria-label="Order just this piece now on WhatsApp"
+        >
+          <WhatsAppIcon className="h-[18px] w-[18px]" /> <span>Order now</span>
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -111,19 +129,21 @@ export function OrderPanel({ product: p, whatsapp }: { product: Product; whatsap
         </div>
       )}
 
-      {/* Desktop / in-page button */}
-      <div className="mt-3 hidden md:block">{button}</div>
+      {/* Desktop / in-page buttons */}
+      <div className="mt-3 hidden md:block">{buttons}</div>
 
-      {/* Phone: the button sticks to the bottom of the screen. */}
+      {/* Phone: the buttons stick to the bottom of the screen. */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 px-4 pb-[max(env(safe-area-inset-bottom),12px)] pt-3 backdrop-blur md:hidden">
         <div className="mb-2 flex items-baseline justify-between text-[13px]">
           <span className="font-display text-[16px]">{p.title}</span>
           <span className="tnum">{mto ? "from " : ""}{rupees(price)}</span>
         </div>
-        {button}
+        {buttons}
       </div>
       <p className="mt-3 text-[12.5px] text-muted">
-        The message is written for you with the product code, size and price. Nothing is charged until we confirm.
+        {mto
+          ? "Bridal is made to your measurements. We'll set up a fitting on WhatsApp."
+          : "Add a few pieces to your bag and send them in one WhatsApp message, or order just this one now. Nothing is charged until we confirm."}
       </p>
     </div>
   );

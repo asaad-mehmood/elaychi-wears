@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BagButton } from "./BagButton";
 import { PodMark } from "./Icons";
 
 export function Header({ name }: { name: string }) {
@@ -16,9 +17,10 @@ export function Header({ name }: { name: string }) {
             </span>
           </span>
         </Link>
-        <nav className="flex items-center gap-5 text-[13px]">
+        <nav className="flex items-center gap-4 text-[13px] sm:gap-5">
           <Link href="/#shop" className="hover:text-elaychi">Shop</Link>
-          <Link href="/#how" className="hover:text-elaychi">How to order</Link>
+          <Link href="/#how" className="hidden hover:text-elaychi sm:inline">How to order</Link>
+          <BagButton />
         </nav>
       </div>
     </header>

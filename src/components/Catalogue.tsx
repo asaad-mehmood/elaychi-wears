@@ -1,36 +1,26 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import type { Category, Product } from "@/data/types";
+import { getCategory, getServerCategory, notifyCategory, revealShop, setCategory, subscribeCategory } from "@/lib/category";
 import { isSoldOut } from "@/lib/format";
 import { ProductCard } from "./ProductCard";
 
 type Sort = "featured" | "low" | "high" | "new";
 
-// The selected category lives in the URL hash (e.g. /#winter) so a filtered
-// view can be shared as a link, and "back" works as people expect.
-const HASH_EVENT = "catalogue-hash";
-function subscribe(cb: () => void) {
-  window.addEventListener("hashchange", cb);
-  window.addEventListener(HASH_EVENT, cb);
-  return () => {
-    window.removeEventListener("hashchange", cb);
-    window.removeEventListener(HASH_EVENT, cb);
-  };
-}
-const getHash = () => decodeURIComponent(window.location.hash.slice(1));
-const getServerHash = () => "";
-
-function setHash(slug: string) {
-  const url = slug ? `#${slug}` : window.location.pathname + window.location.search;
-  window.history.replaceState(null, "", url);
-  window.dispatchEvent(new Event(HASH_EVENT));
-}
-
 export function Catalogue({ products, categories }: { products: Product[]; categories: Category[] }) {
-  const hash = useSyncExternalStore(subscribe, getHash, getServerHash);
+  const hash = useSyncExternalStore(subscribeCategory, getCategory, getServerCategory);
+  // After arriving from another page (e.g. a breadcrumb link to /#winter), re-read the hash once.
+  useEffect(() => {
+    notifyCategory();
+    if (categories.some((c) => c.slug.current === getCategory())) requestAnimationFrame(revealShop);
+  }, [categories]);
   const active = categories.some((c) => c.slug.current === hash) ? hash : "";
-  const [sort, setSort] = useState<Sort>("featured");
+  const [sort, setSortState] = useState<Sort>("featured");
+  const setSort = (v: Sort) => {
+    setSortState(v);
+    requestAnimationFrame(revealShop);
+  };
 
   const counts = useMemo(() => {
     const m: Record<string, number> = {};
@@ -60,14 +50,14 @@ export function Catalogue({ products, categories }: { products: Product[]; categ
       <div className="sticky top-14 z-20 border-y border-line bg-paper/95 backdrop-blur sm:top-16">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4">
           <div className="no-scrollbar -mx-1 flex flex-1 gap-1 overflow-x-auto py-2.5" role="tablist" aria-label="Categories">
-            <Chip label="All" count={products.length} active={!active} onClick={() => setHash("")} />
+            <Chip label="All" count={products.length} active={!active} onClick={() => setCategory("", { reveal: true })} />
             {categories.map((c) => (
               <Chip
                 key={c._id}
                 label={c.title}
                 count={counts[c.slug.current] ?? 0}
                 active={active === c.slug.current}
-                onClick={() => setHash(c.slug.current)}
+                onClick={() => setCategory(c.slug.current, { reveal: true })}
               />
             ))}
           </div>
@@ -94,7 +84,8 @@ export function Catalogue({ products, categories }: { products: Product[]; categ
               {activeCat ? activeCat.title : "The collection"}
             </h2>
             <p className="mt-2 text-sm text-muted">
-              {activeCat ? activeCat.blurb : "Everything in stock right now, plus made-to-order bridal."}
+              {activeCat ? activeCat.blurb : "Everything in stock right now, plus made-to-order bridal."}{" "}
+              <span className="tnum text-elaychi" aria-live="polite">· {shown.length} {shown.length === 1 ? "piece" : "pieces"}</span>
             </p>
           </div>
           <label className="flex shrink-0 items-center gap-2 text-[12px] text-muted sm:hidden">

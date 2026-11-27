@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- static export: plain <img> with srcset */
 import Link from "next/link";
 import { Catalogue } from "@/components/Catalogue";
+import { CategoryButton } from "@/components/CategoryButton";
 import { ArrowIcon, PodMark, WhatsAppIcon } from "@/components/Icons";
 import { getCategories, getProducts, getSettings } from "@/lib/catalogue";
 import { imgUrl, srcSet } from "@/lib/img";
@@ -19,7 +20,7 @@ export default async function Home() {
           <h1 className="mt-4 font-display text-[44px] leading-[0.95] tracking-tight [font-variation-settings:'SOFT'_50,'opsz'_144] sm:text-6xl md:text-7xl">
             Warm colours
             <br />
-            for <em className="[font-variation-settings:'SOFT'_100,'opsz'_144]">foggy</em> mornings.
+            for foggy mornings.
           </h1>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted">
             Velvet, khaddar and soft lawn, cut and stitched in {s.city}. Pick a piece, choose your size, and order
@@ -29,9 +30,9 @@ export default async function Home() {
             <Link href="/#shop" className="inline-flex items-center gap-2 bg-elaychi px-5 py-3 text-[14px] text-paper hover:bg-elaychi-2">
               Shop the collection <ArrowIcon />
             </Link>
-            <Link href="/#winter" className="inline-flex items-center gap-2 border border-elaychi/40 px-5 py-3 text-[14px] text-elaychi-2 hover:border-elaychi">
+            <CategoryButton slug="winter" className="inline-flex items-center gap-2 border border-elaychi/40 px-5 py-3 text-[14px] text-elaychi-2 hover:border-elaychi">
               Winter pieces
-            </Link>
+            </CategoryButton>
           </div>
         </div>
 
@@ -73,8 +74,8 @@ export default async function Home() {
           <h2 className="font-display text-3xl [font-variation-settings:'opsz'_96]">How to order</h2>
           <ol className="mt-6 grid gap-6 sm:grid-cols-3">
             {[
-              ["Pick your piece", "Open any product to see the fabric, colour and sizes in inches."],
-              ["Tap Order on WhatsApp", "Your message is written for you: product, code, size and price. Just press send."],
+              ["Fill your bag", "Open any piece, pick your size (in inches) and tap Add to bag."],
+              ["Send it on WhatsApp", "Your whole order is written for you: pieces, sizes, total. Just press send."],
               ["Pay on delivery", "We confirm on WhatsApp, then deliver in 3–5 working days. Cash, JazzCash or bank transfer."],
             ].map(([t, d], i) => (
               <li key={t} className="flex gap-4">

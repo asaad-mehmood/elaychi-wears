@@ -204,7 +204,7 @@ export const products: Product[] = [
       img("a2", "1702974779825-7103511e5471", "ZmufO_Sw0Sg", "muneeb", "Close-up of embroidered lilac sleeve and a small bag"),
     ],
     colour: "Lilac", fabric: "Chiffon shirt, silk trouser, chiffon dupatta", pieces: "3-piece · stitched",
-    description: "Lilac chiffon with sequin and thread work on the sleeves and dupatta. Swipe for a close-up of the sleeve.",
+    description: "Lilac chiffon with sequin and thread work on the sleeves and dupatta. Tap the second photo for a close-up of the sleeve.",
     sizesInStock: ["S", "M", "L"], sizeMode: "standard", isNew: true, order: 15,
   },
   {

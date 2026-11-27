@@ -48,16 +48,16 @@ export function ProductCard({ product: p, eager = false }: { product: Product; e
           </span>
         )}
       </div>
-      <div className="mt-3 flex items-start justify-between gap-3">
+      <div className="mt-3 sm:flex sm:items-start sm:justify-between sm:gap-3">
         <div className="min-w-0">
-          <h3 className="font-display text-[19px] leading-tight [font-variation-settings:'opsz'_36]">{p.title}</h3>
-          <p className="mt-0.5 truncate text-[12.5px] text-muted">{p.subtitle}</p>
+          <h3 className="font-display text-[18px] leading-tight [font-variation-settings:'opsz'_36] sm:text-[19px]">{p.title}</h3>
+          <p className="mt-0.5 text-[12.5px] leading-snug text-muted sm:truncate">{p.subtitle}</p>
         </div>
-        <div className="shrink-0 text-right text-[13.5px] tnum">
+        <div className="mt-1.5 text-[13.5px] tnum sm:mt-0 sm:shrink-0 sm:text-right">
           {p.salePrice ? (
             <>
-              <span className="block text-sindoor">{rupees(p.salePrice)}</span>
-              <s className="block text-[12px] text-muted">{rupees(p.price)}</s>
+              <span className="text-sindoor sm:block">{rupees(p.salePrice)}</span>{" "}
+              <s className="text-[12px] text-muted sm:block">{rupees(p.price)}</s>
             </>
           ) : (
             <span>{p.sizeMode === "made-to-order" ? "from " : ""}{rupees(p.price)}</span>

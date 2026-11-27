@@ -12,6 +12,8 @@ the whole bag (or a single piece) is sent as one ready-written message.
 - Demo orders go to +92 327 6277218 (`settings.whatsapp` in `src/data/catalogue.ts`)
 
 Live: https://elaychi-wears.pages.dev (Cloudflare Pages, deploys automatically from `main`).
+For auto-deploys to work, the "Cloudflare Workers and Pages" GitHub app must include this repo
+(GitHub → Settings → Applications → Cloudflare Workers and Pages → Configure → Repository access).
 
 The look is taken from a green cardamom (elaychi) pod: pod green for buttons and accents, a pale cardamom tint for panels, and a pod logo (`PodMark` in `src/components/Icons.tsx`).
 

@@ -132,7 +132,7 @@ function Chip({ label, count, active, onClick }: { label: string; count: number;
       aria-selected={active}
       onClick={onClick}
       className={`shrink-0 rounded-full px-3.5 py-1.5 text-[13px] transition-colors ${
-        active ? "bg-ink text-paper" : "text-ink hover:bg-paper-2"
+        active ? "bg-elaychi text-paper" : "text-ink hover:bg-elaychi-mist"
       }`}
     >
       {label} <span className={`tnum text-[11px] ${active ? "text-paper/60" : "text-muted"}`}>{count}</span>

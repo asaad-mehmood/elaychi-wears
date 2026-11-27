@@ -14,3 +14,14 @@ export function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
     </svg>
   );
 }
+
+// A green cardamom (elaychi) pod: the brand mark.
+export function PodMark({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path d="M12 2.5c4.6 3.6 6.4 7.7 6.4 11 0 4.3-2.9 7.6-6.4 8-3.5-.4-6.4-3.7-6.4-8 0-3.3 1.8-7.4 6.4-11Z" fill="var(--elaychi-pod)" />
+      <path d="M12 2.5c4.6 3.6 6.4 7.7 6.4 11 0 4.3-2.9 7.6-6.4 8" fill="none" stroke="var(--elaychi)" strokeWidth="1.3" />
+      <path d="M12 5.5v15M8.6 9.5c1 3 1 7.5.4 10M15.4 9.5c-1 3-1 7.5-.4 10" fill="none" stroke="var(--elaychi)" strokeWidth="1" strokeLinecap="round" opacity=".75" />
+    </svg>
+  );
+}

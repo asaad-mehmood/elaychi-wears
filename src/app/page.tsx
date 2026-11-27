@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- static export: plain <img> with srcset */
 import Link from "next/link";
 import { Catalogue } from "@/components/Catalogue";
-import { ArrowIcon, WhatsAppIcon } from "@/components/Icons";
+import { ArrowIcon, PodMark, WhatsAppIcon } from "@/components/Icons";
 import { getCategories, getProducts, getSettings } from "@/lib/catalogue";
 import { imgUrl, srcSet } from "@/lib/img";
 
@@ -15,7 +15,7 @@ export default async function Home() {
       {/* Hero: an editorial "winter edit" opener, small enough to see products right away on a phone. */}
       <section className="mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-8 sm:pt-12 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pb-16">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-ilaychi">Winter edit · 2026</p>
+          <p className="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-elaychi"><PodMark className="h-4 w-4 -rotate-12" /> Winter edit · 2026</p>
           <h1 className="mt-4 font-display text-[44px] leading-[0.95] tracking-tight [font-variation-settings:'SOFT'_50,'opsz'_144] sm:text-6xl md:text-7xl">
             Warm colours
             <br />
@@ -26,10 +26,10 @@ export default async function Home() {
             in one tap on WhatsApp. Pay cash on delivery.
           </p>
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Link href="/#shop" className="inline-flex items-center gap-2 bg-ink px-5 py-3 text-[14px] text-paper hover:bg-ilaychi-2">
+            <Link href="/#shop" className="inline-flex items-center gap-2 bg-elaychi px-5 py-3 text-[14px] text-paper hover:bg-elaychi-2">
               Shop the collection <ArrowIcon />
             </Link>
-            <Link href="/#winter" className="inline-flex items-center gap-2 border border-ink/20 px-5 py-3 text-[14px] hover:border-ink">
+            <Link href="/#winter" className="inline-flex items-center gap-2 border border-elaychi/40 px-5 py-3 text-[14px] text-elaychi-2 hover:border-elaychi">
               Winter pieces
             </Link>
           </div>
@@ -68,7 +68,8 @@ export default async function Home() {
 
       {/* How ordering works: the main selling point of a WhatsApp catalogue. */}
       <section id="how" className="mx-auto mt-20 max-w-6xl scroll-mt-20 px-4">
-        <div className="border border-line bg-paper-2/50 p-6 sm:p-10">
+        <div className="relative overflow-hidden border border-elaychi/20 bg-elaychi-mist/80 p-6 sm:p-10">
+          <PodMark className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rotate-[24deg] opacity-25" />
           <h2 className="font-display text-3xl [font-variation-settings:'opsz'_96]">How to order</h2>
           <ol className="mt-6 grid gap-6 sm:grid-cols-3">
             {[
@@ -77,7 +78,7 @@ export default async function Home() {
               ["Pay on delivery", "We confirm on WhatsApp, then deliver in 3–5 working days. Cash, JazzCash or bank transfer."],
             ].map(([t, d], i) => (
               <li key={t} className="flex gap-4">
-                <span className="font-display text-4xl leading-none text-ilaychi/70 tnum">{i + 1}</span>
+                <span className="font-display text-4xl leading-none text-elaychi tnum">{i + 1}</span>
                 <div>
                   <p className="font-medium">{t}</p>
                   <p className="mt-1 text-sm text-muted">{d}</p>
@@ -86,7 +87,7 @@ export default async function Home() {
             ))}
           </ol>
           <p className="mt-8 flex items-center gap-2 text-sm text-muted">
-            <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> {s.deliveryNote}
+            <WhatsAppIcon className="h-4 w-4 text-elaychi" /> {s.deliveryNote}
           </p>
         </div>
       </section>

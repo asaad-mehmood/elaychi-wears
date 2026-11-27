@@ -1,6 +1,6 @@
-# Shop catalogue demo: "Ilaychi"
+# Elaychi Wears
 
-A demo shop for a made-up Pakistani clothing brand, built to show Instagram
+A demo shop for a made-up Pakistani clothing brand, **Elaychi Wears**, built to show Instagram
 sellers what Asaad can make for them: all products with prices in one link,
 a category filter, a page per product, and an **Order on WhatsApp** button that
 writes the order message (product, code, size, price, link) for the customer.
@@ -10,6 +10,10 @@ writes the order message (product, code, size, price, link) for the customer.
 - `studio-schema/` has the Sanity schemas for an admin panel later
 - Photos: free Unsplash photos, credited on `/credits`
 - Demo orders go to +92 327 6277218 (`settings.whatsapp` in `src/data/catalogue.ts`)
+
+Live: https://elaychi-wears.pages.dev (Cloudflare Pages, deploys automatically from `main`).
+
+The look is taken from a green cardamom (elaychi) pod: pod green for buttons and accents, a pale cardamom tint for panels, and a pod logo (`PodMark` in `src/components/Icons.tsx`).
 
 ## Run it
 

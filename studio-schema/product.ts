@@ -75,7 +75,7 @@ export const product = defineType({
       title: 'Product code',
       type: 'string',
       group: 'stock',
-      description: 'Your own code, e.g. "ILY-301". It is sent in the WhatsApp order message.',
+      description: 'Your own code, e.g. "EW-301". It is sent in the WhatsApp order message.',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

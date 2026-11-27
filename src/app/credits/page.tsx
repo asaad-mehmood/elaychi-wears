@@ -11,7 +11,7 @@ export default async function Credits() {
       <h1 className="font-display text-4xl [font-variation-settings:'opsz'_144]">Photo credits</h1>
       <p className="mt-3 text-[15px] text-muted">
         This is a demo shop. All product photos are free photos from{" "}
-        <a href="https://unsplash.com/?utm_source=ilaychi_demo&utm_medium=referral" className="underline underline-offset-2" target="_blank" rel="noopener noreferrer">Unsplash</a>{" "}
+        <a href="https://unsplash.com/?utm_source=elaychi_wears&utm_medium=referral" className="underline underline-offset-2" target="_blank" rel="noopener noreferrer">Unsplash</a>{" "}
         (Unsplash License). Thank you to these photographers. The brand, product names and prices are made up.
       </p>
       <ul className="mt-8 divide-y divide-line border-y border-line text-[14px]">

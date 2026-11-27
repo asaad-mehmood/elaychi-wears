@@ -2,20 +2,23 @@ import Link from "next/link";
 import type { ShopSettings } from "@/data/types";
 import { rupees } from "@/lib/format";
 import { waLink } from "@/lib/whatsapp";
-import { WhatsAppIcon } from "./Icons";
+import { PodMark, WhatsAppIcon } from "./Icons";
 
 export function Footer({ settings: s }: { settings: ShopSettings }) {
   return (
-    <footer className="mt-24 border-t border-line bg-paper-2/60">
+    <footer className="mt-24 border-t border-line bg-elaychi-mist/70">
+      <div className="pod-rule -mt-[7px]" aria-hidden="true" />
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="font-display text-2xl italic [font-variation-settings:'SOFT'_100]">{s.name.toLowerCase()}</p>
-          <p className="mt-2 max-w-xs text-sm text-muted">{s.tagline}. Small batches, honest fabric, sizes in inches.</p>
+          <p className="flex items-center gap-2 font-display text-2xl italic [font-variation-settings:'SOFT'_100]">
+            <PodMark className="h-7 w-7 -rotate-12" /> {s.name}
+          </p>
+          <p className="mt-2 max-w-xs text-sm text-muted">{s.tagline}. Named after elaychi, the green cardamom in every good cup of chai: small, warm, and made with care.</p>
           <a
             href={waLink(s.whatsapp, "Assalam o Alaikum! I have a question about your collection.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm hover:border-whatsapp hover:text-whatsapp"
+            className="mt-5 inline-flex items-center gap-2 rounded-full border border-elaychi/30 px-4 py-2 text-sm hover:border-elaychi hover:text-elaychi"
           >
             <WhatsAppIcon className="h-4 w-4" /> Ask us on WhatsApp
           </a>
@@ -42,7 +45,7 @@ export function Footer({ settings: s }: { settings: ShopSettings }) {
           </ul>
         </div>
       </div>
-      <div className="border-t border-line">
+      <div className="border-t border-elaychi/15">
         <p className="mx-auto max-w-6xl px-4 py-4 text-[12px] text-muted">
           Demo store by Asaad Mehmood. Products, prices and the brand are made up; photos from Unsplash.
         </p>

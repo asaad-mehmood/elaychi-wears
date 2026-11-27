@@ -38,7 +38,7 @@ export function ProductCard({ product: p, eager = false }: { product: Product; e
           />
         )}
         <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
-          {p.isNew && !soldOut && <span className="bg-paper/95 px-2 py-0.5 text-[10px] uppercase tracking-[0.16em]">New</span>}
+          {p.isNew && !soldOut && <span className="bg-elaychi-mist px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-elaychi-2">New</span>}
           {off && !soldOut && <span className="bg-sindoor px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-paper">{off}% off</span>}
           {p.sizeMode === "made-to-order" && <span className="bg-ink px-2 py-0.5 text-[10px] uppercase tracking-[0.16em] text-paper">Made to order</span>}
         </div>

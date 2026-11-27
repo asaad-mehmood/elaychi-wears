@@ -56,7 +56,7 @@ export function OrderPanel({ product: p, whatsapp }: { product: Product; whatsap
       target="_blank"
       rel="noopener noreferrer"
       className={`flex w-full items-center justify-center gap-2 px-5 py-3.5 text-[15px] text-white transition-colors ${
-        ready ? "bg-whatsapp hover:bg-[#17603c]" : "bg-whatsapp/70"
+        ready ? "bg-elaychi hover:bg-elaychi-2" : "bg-elaychi/70"
       }`}
     >
       <WhatsAppIcon />
@@ -88,7 +88,7 @@ export function OrderPanel({ product: p, whatsapp }: { product: Product; whatsap
                   aria-pressed={on}
                   className={`h-11 border text-[14px] tnum transition-colors ${
                     on
-                      ? "border-ink bg-ink text-paper"
+                      ? "border-elaychi bg-elaychi text-paper"
                       : ok
                         ? "border-line bg-paper hover:border-ink"
                         : "cursor-not-allowed border-line/60 text-muted/50 line-through"

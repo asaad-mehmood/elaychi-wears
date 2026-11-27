@@ -1,4 +1,4 @@
-// Demo content for "Ilaychi", a made-up Pakistani clothing brand.
+// Demo content for "Elaychi Wears", a made-up Pakistani clothing brand.
 //
 // This file stands in for Sanity. Its shape matches the GROQ query in
 // src/lib/catalogue.ts, so when a real shop gets an admin panel, the pages
@@ -10,12 +10,12 @@
 import type { Category, Product, SanityImage, ShopSettings } from "./types";
 
 export const settings: ShopSettings = {
-  name: "Ilaychi",
+  name: "Elaychi Wears",
   tagline: "Eastern wear, cut and stitched in Lahore",
   city: "Lahore",
   // Demo orders go to Asaad's WhatsApp. A real shop puts its own number here.
   whatsapp: "923276277218",
-  instagram: "ilaychi.demo",
+  instagram: "elaychiwears",
   deliveryNote: "Cash on delivery all over Pakistan · Delivered in 3–5 working days",
   freeDeliveryOver: 6000,
 };
@@ -28,7 +28,7 @@ const photographers = {
   suitsme: { name: "Suits Me Online", user: "suitsmeonline" },
 } as const;
 
-const utm = "utm_source=ilaychi_demo&utm_medium=referral";
+const utm = "utm_source=elaychi_wears&utm_medium=referral";
 
 function img(
   key: string,
@@ -68,7 +68,7 @@ const ALL: Product["sizesInStock"] = ["XS", "S", "M", "L", "XL"];
 export const products: Product[] = [
   {
     _id: "p-anaar", _type: "product", title: "Anaar", subtitle: "Embroidered 3-piece",
-    slug: { current: "anaar" }, code: "ILY-301", price: 8450,
+    slug: { current: "anaar" }, code: "EW-301", price: 8450,
     category: cat("3-piece"),
     images: [img("a1", "1733470381571-c3d082e68457", "rJirD6eI26I", "shireen", "Model in a deep red embroidered shirt, trousers and dupatta in front of a flower arch")],
     colour: "Pomegranate red", fabric: "Cambric shirt, cotton trouser, chiffon dupatta", pieces: "3-piece · stitched",
@@ -77,7 +77,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-makhan", _type: "product", title: "Makhan", subtitle: "Butter-yellow pret set",
-    slug: { current: "makhan" }, code: "ILY-204", price: 4850,
+    slug: { current: "makhan" }, code: "EW-204", price: 4850,
     category: cat("pret"),
     images: [img("a1", "1733470324488-d0e10d014d80", "hbzeoDjfDAw", "shireen", "Model in a soft butter-yellow kurta and trousers beside a floral arch")],
     colour: "Butter yellow", fabric: "Lawn, lined", pieces: "2-piece · stitched",
@@ -86,7 +86,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-raat", _type: "product", title: "Raat", subtitle: "Velvet suit with shawl",
-    slug: { current: "raat" }, code: "ILY-402", price: 12900,
+    slug: { current: "raat" }, code: "EW-402", price: 12900,
     category: cat("winter"),
     images: [img("a1", "1704119142483-1269733bcedb", "Sf-ljYw9WUs", "muneeb", "Model seated in a black velvet suit with an embroidered shawl")],
     colour: "Black", fabric: "Micro velvet shirt, grip trouser, embroidered wool-blend shawl", pieces: "3-piece · stitched",
@@ -95,7 +95,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-jamun", _type: "product", title: "Jamun", subtitle: "Plum suit with shawl",
-    slug: { current: "jamun" }, code: "ILY-405", price: 10750, salePrice: 8990,
+    slug: { current: "jamun" }, code: "EW-405", price: 10750, salePrice: 8990,
     category: cat("winter"),
     images: [img("a1", "1733731402869-57e0cce24aea", "3Axn3NiNh7A", "shireen", "Model in a plum shirt and trousers with a dark shawl over one shoulder")],
     colour: "Jamun plum", fabric: "Khaddar shirt and trouser, embroidered shawl", pieces: "3-piece · stitched",
@@ -104,7 +104,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-neelam", _type: "product", title: "Neelam", subtitle: "Powder-blue 3-piece",
-    slug: { current: "neelam" }, code: "ILY-306", price: 7650,
+    slug: { current: "neelam" }, code: "EW-306", price: 7650,
     category: cat("3-piece"),
     images: [img("a1", "1733470381436-bb5a2a441708", "emXLNzgf3p4", "shireen", "Model in a powder-blue embroidered suit standing under a floral archway")],
     colour: "Powder blue", fabric: "Lawn shirt, cambric trouser, organza dupatta", pieces: "3-piece · stitched",
@@ -113,7 +113,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-kohl", _type: "product", title: "Kohl", subtitle: "Black formal with printed dupatta",
-    slug: { current: "kohl" }, code: "ILY-503", price: 15900,
+    slug: { current: "kohl" }, code: "EW-503", price: 15900,
     category: cat("formals"),
     images: [img("a1", "1733470381591-c5dfb9df3c3d", "aBdtyKmjs7c", "shireen", "Model in a black embroidered formal with a black and white dupatta")],
     colour: "Black and ivory", fabric: "Raw silk shirt, silk trouser, printed chiffon dupatta", pieces: "3-piece · stitched",
@@ -122,7 +122,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-firoza", _type: "product", title: "Firoza", subtitle: "Teal bridal lehenga",
-    slug: { current: "firoza" }, code: "ILY-901", price: 185000,
+    slug: { current: "firoza" }, code: "EW-901", price: 185000,
     category: cat("bridal"),
     images: [
       img("a1", "1747847471517-952a3eb93a89", "JDYxnaxFJws", "naeem", "Bride in a teal and gold heavily embroidered outfit with jewellery"),
@@ -134,7 +134,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-shabnam", _type: "product", title: "Shabnam", subtitle: "Ice-white pret set",
-    slug: { current: "shabnam" }, code: "ILY-209", price: 4450,
+    slug: { current: "shabnam" }, code: "EW-209", price: 4450,
     category: cat("pret"),
     images: [img("a1", "1733209590486-4ed0bfcbc52a", "VshbFm-cBeo", "shireen", "Model in an ice-white kurta and straight trousers on steps")],
     colour: "Ice white", fabric: "Cotton net over lawn", pieces: "2-piece · stitched",
@@ -143,7 +143,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-gulabi", _type: "product", title: "Gulabi", subtitle: "Blush pret set",
-    slug: { current: "gulabi" }, code: "ILY-211", price: 4650,
+    slug: { current: "gulabi" }, code: "EW-211", price: 4650,
     category: cat("pret"),
     images: [img("a1", "1733209484732-6b094322a89f", "QXRL6XkxYNk", "shireen", "Model in a blush-pink kurta and trousers in a bright living room")],
     colour: "Blush pink", fabric: "Cotton silk", pieces: "2-piece · stitched",
@@ -152,7 +152,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-pudina", _type: "product", title: "Pudina", subtitle: "Mint pret set",
-    slug: { current: "pudina" }, code: "ILY-214", price: 4650,
+    slug: { current: "pudina" }, code: "EW-214", price: 4650,
     category: cat("pret"),
     images: [img("a1", "1733209589578-97136bee7d7a", "OeYXZyM63cQ", "shireen", "Model in a mint-green embroidered kurta and trousers next to white flowers")],
     colour: "Mint", fabric: "Lawn with schiffli", pieces: "2-piece · stitched",
@@ -161,7 +161,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-sarson", _type: "product", title: "Sarson", subtitle: "Mustard 3-piece",
-    slug: { current: "sarson" }, code: "ILY-309", price: 6950,
+    slug: { current: "sarson" }, code: "EW-309", price: 6950,
     category: cat("3-piece"),
     images: [img("a1", "1701252072712-e939599623f2", "TP9IdIX6QR8", "muneeb", "Model in a mustard-yellow shirt holding a long printed dupatta")],
     colour: "Mustard", fabric: "Lawn shirt and trouser, printed silk dupatta", pieces: "3-piece · stitched",
@@ -170,7 +170,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-nimbu", _type: "product", title: "Nimbu", subtitle: "Lemon pret set",
-    slug: { current: "nimbu" }, code: "ILY-216", price: 4250,
+    slug: { current: "nimbu" }, code: "EW-216", price: 4250,
     category: cat("pret"),
     images: [img("a1", "1733209587923-77ff33202f7c", "E4Q1-2Bej0c", "shireen", "Model in a pale lemon kurta and trousers holding a small green bag")],
     colour: "Lemon", fabric: "Lawn", pieces: "2-piece · stitched",
@@ -179,7 +179,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-dhuan", _type: "product", title: "Dhuan", subtitle: "Grey suit with black shawl",
-    slug: { current: "dhuan" }, code: "ILY-408", price: 9850,
+    slug: { current: "dhuan" }, code: "EW-408", price: 9850,
     category: cat("winter"),
     images: [img("a1", "1773439878338-c61b0fe9ed48", "2UjQP0mqU-A", "muneeb", "Model in a smoke-grey embroidered suit with a black shawl")],
     colour: "Smoke grey", fabric: "Linen shirt and trouser, embroidered shawl", pieces: "3-piece · stitched",
@@ -188,7 +188,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-samandar", _type: "product", title: "Samandar", subtitle: "Aqua pret set",
-    slug: { current: "samandar" }, code: "ILY-218", price: 4850,
+    slug: { current: "samandar" }, code: "EW-218", price: 4850,
     category: cat("pret"),
     images: [img("a1", "1733209588000-339b73c36575", "O3YKa1jtcYg", "shireen", "Model in an aqua kurta and trousers beside a pool")],
     colour: "Aqua", fabric: "Cotton lawn", pieces: "2-piece · stitched",
@@ -197,7 +197,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-gulnaz", _type: "product", title: "Gulnaz", subtitle: "Lilac chiffon formal",
-    slug: { current: "gulnaz" }, code: "ILY-507", price: 16500,
+    slug: { current: "gulnaz" }, code: "EW-507", price: 16500,
     category: cat("formals"),
     images: [
       img("a1", "1705920824583-0e783235394d", "zWaiJcc0WAc", "muneeb", "Model in a lilac chiffon formal with an embroidered dupatta"),
@@ -209,7 +209,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-raat-rani", _type: "product", title: "Raat Rani", subtitle: "Navy embroidered formal",
-    slug: { current: "raat-rani" }, code: "ILY-510", price: 18900,
+    slug: { current: "raat-rani" }, code: "EW-510", price: 18900,
     category: cat("formals"),
     images: [img("a1", "1614098097306-c67b8020c04e", "_MrdhhuR26Q", "suitsme", "Model in a navy formal with white floral embroidery and a sheer dupatta")],
     colour: "Navy and white", fabric: "Organza shirt, silk trouser, net dupatta", pieces: "3-piece · stitched",
@@ -218,7 +218,7 @@ export const products: Product[] = [
   },
   {
     _id: "p-surkh", _type: "product", title: "Surkh", subtitle: "Red bridal lehenga",
-    slug: { current: "surkh" }, code: "ILY-903", price: 165000,
+    slug: { current: "surkh" }, code: "EW-903", price: 165000,
     category: cat("bridal"),
     images: [img("a1", "1707576618343-26a1b377ca7a", "x1h4Nw0CwfY", "talha", "Bride in a red embroidered lehenga in front of a white building")],
     colour: "Surkh red", fabric: "Velvet lehenga, raw silk choli, net dupatta", pieces: "Lehenga, choli and dupatta · made to order",

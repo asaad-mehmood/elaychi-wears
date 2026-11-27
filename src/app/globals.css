@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 /*
-  Ilaychi palette: unbleached cotton paper, soot ink, cardamom green, and a
-  sindoor red used only for sale prices. Warm and quiet so the clothes do the
-  talking.
+  Elaychi Wears palette, taken from a green cardamom (elaychi) pod: the deep
+  green of the pod's ridges, its pale yellow-green skin, the dark seeds inside,
+  on unbleached cotton paper. Sindoor red is used only for sale prices.
 */
 :root {
   --paper: #f4efe5;
@@ -11,8 +11,11 @@
   --ink: #211d18;
   --muted: #6e6559;
   --line: #ddd2bf;
-  --ilaychi: #4c5a2e;
-  --ilaychi-2: #3c4824;
+  --elaychi: #55682a;      /* pod green: buttons, accents */
+  --elaychi-2: #3d4c1c;    /* deep pod: hover, top bar */
+  --elaychi-pod: #a7b56b;  /* pale pod skin: small marks */
+  --elaychi-mist: #e4e7cf; /* cardamom tint: soft panels */
+  --seed: #2b2416;         /* the dark seeds inside */
   --sindoor: #a8381c;
   --whatsapp: #1f7a4d;
 }
@@ -23,8 +26,11 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-ilaychi: var(--ilaychi);
-  --color-ilaychi-2: var(--ilaychi-2);
+  --color-elaychi: var(--elaychi);
+  --color-elaychi-2: var(--elaychi-2);
+  --color-elaychi-pod: var(--elaychi-pod);
+  --color-elaychi-mist: var(--elaychi-mist);
+  --color-seed: var(--seed);
   --color-sindoor: var(--sindoor);
   --color-whatsapp: var(--whatsapp);
   --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
@@ -44,12 +50,12 @@ body {
 }
 
 ::selection {
-  background: var(--ilaychi);
+  background: var(--elaychi);
   color: var(--paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--ilaychi);
+  outline: 2px solid var(--elaychi);
   outline-offset: 2px;
 }
 
@@ -75,9 +81,18 @@ body {
   display: none;
 }
 
+/* Thin row of cardamom pods used as a divider (pure CSS + inline SVG). */
+.pod-rule {
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='14' viewBox='0 0 44 14'%3E%3Cpath d='M4 7c4-5 11-5 15 0-4 5-11 5-15 0Z' fill='%23a7b56b'/%3E%3Cpath d='M6.5 7h10' stroke='%2355682a' stroke-width='.9' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='7' r='1.4' fill='%232b2416' opacity='.55'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+  opacity: 0.85;
+}
+
 /* Image placeholder colour while photos load. */
 .img-bg {
-  background: linear-gradient(160deg, var(--paper-2), #e2d8c4);
+  background: linear-gradient(160deg, var(--elaychi-mist), #dcd6bd);
 }
 
 @media (prefers-reduced-motion: reduce) {

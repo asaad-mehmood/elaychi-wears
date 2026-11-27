@@ -9,7 +9,7 @@
 
 ## What this repo is
 
-Demo WhatsApp-order shop catalogue for a fake Lahore clothing brand "Ilaychi". Next.js 16 App Router, TypeScript, Tailwind v4, `output: "export"` + `trailingSlash: true` (every page is `folder/index.html`). Not deployed yet; meant for Cloudflare Pages (build command `npm run build`, output folder `out`).
+"Elaychi Wears": demo WhatsApp-order shop catalogue for a made-up Lahore clothing brand (folder/repo/Cloudflare project all named `elaychi-wears`). Colours come from a green cardamom (elaychi) pod — tokens `--elaychi`, `--elaychi-2`, `--elaychi-pod`, `--elaychi-mist`, `--seed` in `globals.css`; logo is `PodMark`. Product codes are `EW-xxx`. Next.js 16 App Router, TypeScript, Tailwind v4, `output: "export"` + `trailingSlash: true` (every page is `folder/index.html`). Live at https://elaychi-wears.pages.dev — Cloudflare Pages project `elaychi-wears`, connected to GitHub `asaad-mehmood/elaychi-wears` (`main` auto-deploys; build `npm run build`, output `out`, NODE_VERSION 22).
 
 ## File map
 

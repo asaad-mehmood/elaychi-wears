@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/*
+  Ilaychi palette: unbleached cotton paper, soot ink, cardamom green, and a
+  sindoor red used only for sale prices. Warm and quiet so the clothes do the
+  talking.
+*/
+:root {
+  --paper: #f4efe5;
+  --paper-2: #ebe3d3;
+  --ink: #211d18;
+  --muted: #6e6559;
+  --line: #ddd2bf;
+  --ilaychi: #4c5a2e;
+  --ilaychi-2: #3c4824;
+  --sindoor: #a8381c;
+  --whatsapp: #1f7a4d;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-ilaychi: var(--ilaychi);
+  --color-ilaychi-2: var(--ilaychi-2);
+  --color-sindoor: var(--sindoor);
+  --color-whatsapp: var(--whatsapp);
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ilaychi);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ilaychi);
+  outline-offset: 2px;
+}
+
+/* Prices and counts line up neatly. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* A subtle woven-paper grain behind everything (pure CSS, no image file). */
+.grain {
+  background-image:
+    radial-gradient(rgba(33, 29, 24, 0.035) 1px, transparent 1px),
+    radial-gradient(rgba(33, 29, 24, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+
+/* Sideways-scrolling rows (filter chips) without a visible scrollbar. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Image placeholder colour while photos load. */
+.img-bg {
+  background: linear-gradient(160deg, var(--paper-2), #e2d8c4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -61,8 +61,8 @@ export function BagDrawer({ products, settings: s }: { products: Mini[]; setting
         role="dialog"
         aria-modal="true"
         aria-label="Your bag"
-        className={`absolute inset-y-0 right-0 flex w-full max-w-[420px] flex-col bg-paper shadow-2xl transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`absolute inset-y-0 right-0 flex w-full max-w-[420px] flex-col bg-paper transition-[transform,visibility] duration-300 ease-out ${
+          open ? "visible translate-x-0 shadow-2xl" : "invisible translate-x-full"
         }`}
       >
         <header className="flex items-center justify-between border-b border-line px-5 py-4">
